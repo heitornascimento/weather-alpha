@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_done.png" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/item_icon.png" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/item_icon.png" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_done.png" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/item_icon.png" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_done.png" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/item_icon.png" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_done.png" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/item_icon.png" charset="ISO-8859-1" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

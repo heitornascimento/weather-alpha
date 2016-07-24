@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_internet">Sem Internet</string>
+
+    <string name="feel_like">Sensação </string>
+    <string name="wind">Vento </string>
+    <string name="city">Cidade</string>
+
+    <string name="add">Adicionar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="mandatory">Campo Obrigatório</string>
+    <string name="name">Nome</string>
+    <string name="error_city">Error ao carregar</string>
+    <string name="main_title">Cidades</string>
+
+</resources>

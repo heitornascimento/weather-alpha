@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:autofit="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/today"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appBar"
+        android:background="?attr/colorPrimary">
+
+
+        <!-- Description -->
+        <LinearLayout
+            android:id="@+id/descriptionLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <me.grantland.widget.AutofitTextView
+                android:id="@+id/description"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:maxLines="2"
+                android:paddingLeft="8dp"
+                android:paddingTop="40dp"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textSize="54sp"
+                autofit:minTextSize="30sp" />
+
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/icon"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_toRightOf="@+id/description"
+                android:layout_weight="1"
+                android:paddingTop="40dp"
+                app:civ_border_color="@color/bgCircle"
+                app:civ_border_width="1dp" />
+
+
+        </LinearLayout>
+
+        <!-- Celsius -->
+        <TextView
+            android:id="@+id/tempC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/descriptionLL"
+            android:layout_weight="1"
+            android:paddingLeft="16dp"
+            android:textColor="@color/textColor"
+            android:textSize="32sp" />
+
+        <!-- fahrenheit -->
+        <TextView
+            android:id="@+id/tempF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/descriptionLL"
+            android:layout_toRightOf="@+id/tempC"
+            android:paddingLeft="6dp"
+            android:paddingTop="12dp"
+            android:textColor="@color/textColor"
+            android:textSize="20sp" />
+
+
+        <!-- container bottom -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+
+            <!-- Feel Like -->
+            <LinearLayout
+                android:id="@+id/feelLL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingBottom="32dp"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:id="@+id/feelTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="4dp"
+                    android:visibility="invisible"
+                    android:text="@string/feel_like"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/feeltempC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- Wind Data -->
+            <LinearLayout
+                android:id="@+id/windLL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_toRightOf="@id/feelLL"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingBottom="32dp"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:id="@+id/windTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="4dp"
+                    android:visibility="invisible"
+                    android:text="@string/wind"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/wind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
