@@ -53,8 +53,10 @@ public class WeatherPresenter extends BasePresenter {
 
                 if (data == null || data.getFutureWeather() == null
                         || data.getFutureWeather() == null || data.getFutureWeather().size() == 0) {
-                    mView.onFailure(mContextReference.
-                            get().getResources().getString(R.string.error_city) + " - " + mCity);
+                    if(mView != null && mContextReference.get() != null){
+                        mView.onFailure(mContextReference.
+                                get().getResources().getString(R.string.error_city) + " - " + mCity);
+                    }
                     return;
                 }
                 mView.onSuccess(data);

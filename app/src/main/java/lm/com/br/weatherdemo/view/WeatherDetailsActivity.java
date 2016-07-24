@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
@@ -40,6 +41,8 @@ public class WeatherDetailsActivity extends BasicActivity implements
     private RecyclerView mRecyclerViewWeather;
     private FutureWeatherAdapter mAdapterWeather;
 
+    private Data mData;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,20 +50,48 @@ public class WeatherDetailsActivity extends BasicActivity implements
         setContentView(R.layout.details);
         setupToolbar();
         loadView();
-        loadData(getIntent());
+        restoreData(savedInstanceState);
     }
 
+
+    private void restoreData(Bundle bundle){
+        if(bundle != null){
+            mData = bundle.getParcelable("data");
+        }
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mPresenter.setForeground(true);
+        loadData(getIntent());
+        if(mPresenter != null){
+            mPresenter.setForeground(true);
+        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mPresenter.setForeground(false);
+        if(mPresenter != null){
+            mPresenter.setForeground(false);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("data", mData);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if(savedInstanceState != null){
+            mData = savedInstanceState.getParcelable("data");
+            if(mData != null){
+                populateData(mData);
+            }
+        }
     }
 
     @Override
@@ -81,19 +112,21 @@ public class WeatherDetailsActivity extends BasicActivity implements
     @Override
     public void onRefresh() {
         if (mCity != null && !mCity.equals("")) {
-            loadWeather(mCity);
+            loadWeather(mCity, true);
+        } else{
+            loadWeather(mData.getRequest().get(0).getQuery(), true);
         }
     }
 
     @Override
     public void onSuccess(Object resultObj) {
 
-        Data data = (Data) resultObj;
-        if (data == null) {
+        mData = (Data) resultObj;
+        if (mData == null) {
             showMessageSnackBar(getResources().getString(R.string.error_city));
             return;
         }
-        populateData(data);
+        populateData(mData);
         if (mSwipeRefresh != null && mSwipeRefresh.isRefreshing()) {
             mSwipeRefresh.setRefreshing(false);
         }
@@ -157,10 +190,10 @@ public class WeatherDetailsActivity extends BasicActivity implements
      */
     private void loadData(Intent intent) {
 
-        if (intent != null) {
+        if (intent != null && mData == null) {
             mCity = intent.getStringExtra("city");
             if (mCity != null && !mCity.equals("")) {
-                loadWeather(mCity);
+                loadWeather(mCity, false);
             }
         }
     }
@@ -170,9 +203,11 @@ public class WeatherDetailsActivity extends BasicActivity implements
      *
      * @param city
      */
-    private void loadWeather(String city) {
-        mPresenter = new WeatherPresenter(this, getApplicationContext());
-        mPresenter.execute(mCity);
+    private void loadWeather(String city, boolean isToRefresh) {
+        if(mData == null || isToRefresh){
+            mPresenter = new WeatherPresenter(this, getApplicationContext());
+            mPresenter.execute(city);
+        }
     }
 
     /**
@@ -207,7 +242,7 @@ public class WeatherDetailsActivity extends BasicActivity implements
      * @param data
      */
     private void populateFutureWeather(Data data) {
-        data.getFutureWeather().remove(0);
+        //data.getFutureWeather().remove(0);
         mAdapterWeather = new FutureWeatherAdapter(this, data.getFutureWeather());
         mRecyclerViewWeather.setAdapter(mAdapterWeather);
         mAdapterWeather.notifyDataSetChanged();

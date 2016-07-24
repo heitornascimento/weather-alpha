@@ -57,11 +57,16 @@ public class BasicActivity extends AppCompatActivity {
      * @param message
      */
     protected void showMessageSnackBar(String message) {
-        Snackbar snackbar = Snackbar.
-                make(findViewById(R.id.cl),
-                        message,
-                        Snackbar.LENGTH_LONG);
-        snackbar.show();
+
+        if (findViewById(R.id.cl) != null) {
+
+            Snackbar snackbar = Snackbar.
+                    make(findViewById(R.id.cl),
+                            message,
+                            Snackbar.LENGTH_LONG);
+            snackbar.show();
+        }
+
     }
 
     protected boolean checkInternetConnection() {
