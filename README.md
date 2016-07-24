@@ -5,6 +5,7 @@ The following libs were used:
 - Material design support library and its others supports
 - Retrofit for networking.
 - Picasso for image rendering.
+- Realm for Database.
 - Autofittextview to auto resize textview. me.grantland:autofittextview
 - Circle to display image in circle format. de.hdodenhof:circleimageview
 - Espresso for instrumentation test
