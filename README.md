@@ -10,6 +10,8 @@ The following libs were used:
 - Espresso for instrumentation test
 - mockito for unit test.
 
+Demonstration video: [link text](https://www.youtube.com/watch?v=o4AC-rGw3C8&feature=youtu.be "Weather-Alpha")
+
 Screenshots:
 
 ![alt text](https://s31.postimg.org/pkj6yy5mz/Screen1.png "First") 
